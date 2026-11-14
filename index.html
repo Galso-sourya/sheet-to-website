@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101014">
+  <title>ReelIndex — Movie Database</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">R</span><span>REEL<span class="brand-muted">INDEX</span></span></a>
+    <div class="top-actions">
+      <span class="live-dot"></span><span class="sync-label" id="syncStatus">Connecting to library…</span>
+      <button class="refresh-btn" id="refreshBtn" aria-label="Refresh movies"><span>↻</span> Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> YOUR PERSONAL CINEMA ARCHIVE</p>
+        <h1>Every story.<br><em>One place.</em></h1>
+        <p class="hero-sub">Explore movies, discover the actors behind them, and find your next favourite film.</p>
+        <div class="hero-stats">
+          <div><strong id="movieCount">—</strong><span>MOVIES</span></div>
+          <i></i>
+          <div><strong id="actorCount">—</strong><span>ACTORS</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="poster poster-back"><span>THE<br>STORY</span><small>NO. 02</small></div>
+        <div class="poster poster-front"><span>THE<br>MAGIC<br>OF FILM</span><small>REELINDEX COLLECTION</small></div>
+        <div class="hero-orbit"></div>
+      </div>
+    </section>
+
+    <section class="library-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">THE COLLECTION</p><h2>Browse the library</h2></div>
+        <span class="result-count" id="resultCount">Loading titles…</span>
+      </div>
+      <div class="toolbar">
+        <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Search movies or actors…" autocomplete="off"><kbd>⌘ K</kbd></label>
+        <label class="filter-wrap"><span>ACTOR</span><select id="actorFilter"><option value="">All actors</option></select></label>
+        <label class="filter-wrap"><span>YEAR</span><select id="yearFilter"><option value="">All years</option></select></label>
+      </div>
+      <div id="message" class="message hidden"></div>
+      <div id="movieGrid" class="movie-grid" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state hidden"><div class="empty-icon">⌕</div><h3>No titles found</h3><p>Try another movie name or actor.</p></div>
+    </section>
+  </main>
+
+  <footer><span class="brand-small">REELINDEX</span><span>Powered by your Google Sheet</span><span id="lastUpdated">Waiting for data</span></footer>
+
+  <div class="modal hidden" id="movieModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <article class="modal-card">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <div class="modal-poster" id="modalPoster"></div>
+      <div class="modal-content">
+        <p class="eyebrow">MOVIE DETAILS</p><h2 id="modalTitle"></h2>
+        <p class="modal-meta" id="modalMeta"></p>
+        <div class="modal-divider"></div>
+        <p class="detail-label">CAST</p><p id="modalActors" class="modal-actors"></p>
+        <p class="detail-label description-label">ABOUT THE FILM</p><p id="modalDescription" class="modal-description"></p>
+      </div>
+    </article>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
